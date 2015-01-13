@@ -1,0 +1,69 @@
+\documentclass[a4paper,12pt,pointlessnumbers]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{acronym}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0ex}
+
+% Title Page
+\title{CMS Pixeldetektorupgrade Phase 1\\---\\Handbuch\\---\\HDI Test}
+\author{Benedikt Vormwald -- Universit\"{a}t Hamburg}
+
+
+\definecolor{myblue}{rgb}{0.86,0.90,1.00}
+\definecolor{mygreen}{rgb}{0.76,0.9,0.7}
+
+\lstdefinestyle{console1}{
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{myblue},
+  frame=single,
+  framerule=0pt
+}
+
+\lstdefinestyle{console2}{
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{mygreen},
+  frame=single,
+  framerule=0pt
+}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Dieses Handbuch beschreibt schrittweise die Durchf\"{u}hrung des Tests des \ac{HDI} im Zusammenhang mit der Pixeldetektor-Modulproduktion 2014 an der Universit\"{a}t Hamburg f\"{u}r das Phase1-Upgrade des CMS Pixeldetektors.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Aufbau des Teststands}
+\section{Vorbereitung und Inbetriebnahme}
+\section{Testprozedur}
+\section{Au{\ss}erbetriebnahme}
+
+\begin{lstlisting}[style=console1]
+ console 1
+\end{lstlisting}
+
+\begin{lstlisting}[style=console2]
+ console 2
+\end{lstlisting}
+
+\appendix
+\section{Abk\"{u}rzungen}
+
+\begin{acronym}[XXXXX]
+ \acro{HDI}{high density interconnect}
+ \acro{TBM}{token bit manager}
+ \acro{ROC}{read-out chip}
+ \acro{CTR}{Calibration, Trigger, Reset}
+ \acro{SDA}{Serial Data}
+\end{acronym}
+
+\end{document}          
