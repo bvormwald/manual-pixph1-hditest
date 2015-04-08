@@ -46,7 +46,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Dieses Handbuch beschreibt schrittweise die Durchf\"{u}hrung des Tests des HDI im Zusammenhang mit der Pixeldetektor-Modulproduktion 2014 an der Universit\"{a}t Hamburg f\"{u}r das Phase1-Upgrade des CMS Pixeldetektors.
+Dieses Handbuch beschreibt schrittweise die Durchf\"{u}hrung des Tests des HDI im Zusammenhang mit der Pixeldetektor-Modulproduktion 2015 an der Universit\"{a}t Hamburg f\"{u}r das Phase1-Upgrade des CMS Pixeldetektors.
 \end{abstract}
 
 \tableofcontents
@@ -123,7 +123,7 @@ F{\"u}r die Konfiguration gehen Sie wie folgt vor:
 Best{\"a}tigen sie in diesem Fall ihre Eingabe \textbf{nicht} mit der enter-Taste.
 Das Ger{\"a}t wechselt nach einigen Sekunde von alleine aus dem Editiermodus in den Anzeigemodus.
 \item  W{\"a}hlen Sie nun den Strommessmodus (Taste I), sodass die im Display angezeigte Gr{\"o}{\ss}e einen Strom darstellt.
-\item  Mit den range-Tasten w{\"a}hlen Sie den Messbereich $10\mu\mathrm{A}$ aus.
+\item  Mit den range-Tasten w{\"a}hlen Sie den Messbereich $20\mu\mathrm{A}$ aus.
 \item  Deaktivieren Sie im letzten Schritt den Zero-Check (Z-CHK).
 \end{itemize}
 
@@ -184,13 +184,20 @@ Unter keinen Umst{\"a}nden darf der Messkopf auf das HDI fallen, da dadurch sowo
 Zuletzt bereiten Sie den DAQ-Computer vor.
 F\"ur die folgenden elektronischen Tests werden zwei ge\"offnete Konsolenfenster (\colorbox{myblue}{\texttt{console 1}} \colorbox{mygreen}{\texttt{console 2}}) ben\"otigt.
 Der Farbcode dient im Weiteren zur Unterscheidung zwischen den beiden Konsolenfenster.
+Stellen Sie sicher, dass Sie in beiden Konsolen die richtigen Ordner ge{\"o}ffnet haben:
+\begin{lstlisting}[style=console1]
+ cd ~/psi46test
+\end{lstlisting}
+\begin{lstlisting}[style=console2]
+ cd ~/HDItest/Lab-Jack-Code/examples
+\end{lstlisting}
 
 \section{Elektronische Tests}
 \subsection{Test der Datensignalausgabe}
 Im ersten Test wird die generelle Datensignalausgabe getestet.
 Starten Sie daf{\"u}r das Kontrollprogramm f{\"u}r das Testboard:
 \begin{lstlisting}[style=console1]
- ~/psi46test/bin/psi64test ~/psi46test/data/logfile.log
+ bin/psi64test data/logfile.log
  > fsel 2
  > startmod
 \end{lstlisting}
@@ -198,11 +205,7 @@ Wiederholen Sie den letzten Befehl bis f{\"u}r den digitale Strom in der Konsole
 $\mathrm{I_A}$ sollte stets $0\mathrm{mA}$ anzeigen.
 Vermerken Sie den gemessenen \protokoll{Wert f{\"u}r $\mathrm{I_D}$} im Testprotokoll.
 
-Schalten Sie nun die Relaiskarte an
-\begin{lstlisting}[style=console2]
- ~/HDItest/Lab-Jack-Code/examples/Poweron
-\end{lstlisting}
-und w{\"a}hlen Sie an der ersten Signalweiche \frqq D1\flqq\ als Synchronisationssignal sowie an der anderen Signalweiche \frqq A+\flqq.
+W{\"a}hlen Sie an der ersten Signalweiche \frqq D1\flqq\ als Synchronisationssignal und an der anderen Signalweiche \frqq A+\flqq.
 Sie sollten nun ein auf dem Oszilloskopbildschirm ein Bild wie in Abbildung~\ref{fig:signaldifftest} sehen.
 
 \begin{figure}
@@ -220,9 +223,13 @@ Vermerken Sie die \protokoll{Ergebnisse f{\"u}r \frqq A+\flqq\ und \frqq A-\flqq
 
 \subsection{Clock-Test}\label{sec:clocktest}
 Im n{\"a}chsten Schritt werden vier Clock-Signale getestet.
-F{\"u}hren Sie dazu das folgende Programm aus:
+Schalten Sie dazu zun{\"a}chst die Relaiskarte an:
 \begin{lstlisting}[style=console2]
- ~/HDItest/Lab-Jack-Code/examples/Clock[0,1,2,3]
+ ./Poweron
+\end{lstlisting}
+F{\"u}hren Sie anschlie{\ss}end das folgende Programm aus:
+\begin{lstlisting}[style=console2]
+ ./Clock[0,1,2,3]
 \end{lstlisting}
 Das Oszilloskopbild sollte nun ein {\"a}hnliches Bild wie in Abbildung~\ref{fig:clocktest} zeigen.
 \begin{figure}
@@ -246,7 +253,7 @@ Lesen Sie bei diesem Test au{\ss}erdem die \protokoll{Spannung am Multimeter} ab
 \subsection{CTR-Test}
 F{\"u}r den Test der vier CTR-Signale f{\"u}hren Sie das folgende Programm aus:
 \begin{lstlisting}[style=console2]
- ~/HDItest/Lab-Jack-Code/examples/CTR[0,1,2,3]
+ ./CTR[0,1,2,3]
 \end{lstlisting}
 
 Das Signal auf dem Oszilloskopbildschirm sollte wie in Abbildung~\ref{fig:ctrtest} aussehen:
@@ -267,7 +274,7 @@ Dieses Vorgehen wird f{\"u}r alle vier CTR-Signale wiederholt.
 Fahren Sie nun mit dem Test der Ausgabe serieller Daten (SDA) fort.
 W{\"a}hlen Sie dazu an der ersten Signalweiche \frqq D2\flqq\ als Synchronisationssignal f{\"u}r das Oszilloskop und f{\"u}hren Sie folgendes Programm aus:
 \begin{lstlisting}[style=console2]
- ~/HDItest/Lab-Jack-Code/examples/SDA[0,1,2,3]
+ ./SDA[0,1,2,3]
 \end{lstlisting}
 
 Entsprechend der Wahl des SDA-Kanals, w{\"a}hlen Sie:
@@ -295,7 +302,7 @@ Notieren Sie die \protokoll{Amplituden im Oszilloskopkanal 1 und 2} im Testproto
 \subsection{HV-Test}
 Als letzten Test f{\"u}hren Sie den Hochspannungstest aus. Setzen Sie dazu zuerst die Relaiskarte zur{\"u}ck:
 \begin{lstlisting}[style=console2]
- ~/HDItest/Lab-Jack-Code/examples/InitializeDigitalIO
+ ./InitializeDigitalIO
 \end{lstlisting}
 Bitte beachten Sie, dass beim Hochspannungstest der \warnung{Messkopf unter keinen Umst{\"a}nden von dem HDI abgehoben werden darf}, da durch eine {\"U}berschlagsentladung das HDI und der Messkopf nachhaltig besch{\"a}digt werden k{\"o}nnen.
 Generell ist w{\"a}hrend des gesamten Hochspannungstests jede Ber{\"u}hrung des HDI-Testers zu vermeiden.
@@ -321,7 +328,8 @@ Da der Hochspannungstest der letzte elektronische Test des HDIs ist, schalten Si
 
 \section{Abschlie{\ss}ende Sichtkontrolle}
 Bringen Sie den Messkopf am HDI-Tester vorsichtig in die Halteposition und sichern Sie diesen wieder mit der Arretierung.
-Entnehmen Sie anschlie{\ss}end die Tr{\"a}gerplatte mit dem HDI aus dem HDI-Tester.
+Deaktivieren Sie die Vakuumpumpe und entnehmen Sie anschlie{\ss}end die Tr{\"a}gerplatte mit dem HDI aus dem HDI-Tester.
+Das Flachkabel wird wieder vom HDI entfernt.
 Pr{\"u}fen Sie zum Abschluss des HDI-Tests nochmals die \protokoll{wire-bonding Verbindungen} zum TBM-Chip mit einer Lupe oder dem Mikroskop und vermerken Sie das Ergebnis erneut im Testprotokoll.
 
 \section{Au{\ss}erbetriebnahme}
