@@ -96,6 +96,7 @@ Fassen Sie daher stets ausschlie{\ss}lich die Tr{\"a}gerplatte an.
 
 \"Uperpr\"ufen Sie mit Hilfe des Mikroskops oder einer Lupe, ob die wire-bonds korrekt das HDI mit dem TBM-Chip verbinden.
 Die Verbindungen sollten vollst{\"a}ndig sein, parallel zueinander ausgerichtet sein und sich gegenseitig nicht ber{\"u}hren.
+Die Kontaktpads d\"urfen nicht mit Kleber verdeckt sein.
 \"Uberpr\"ufen Sie das HDI auch auf sonstige mechanische Deformationen und vermerken Sie \protokoll{Auff\"alligkeiten} im Testprotokoll.
 %Die Sichtkontrolle wird am Ende der elektronischen Tests nochmals wiederholt.
 Notieren Sie in diesem Schritt auch die \textbf{Identifikationsnummer des HDI} (vgl. Abbildung \ref{fig:hdi}).
@@ -189,7 +190,7 @@ Stellen Sie sicher, dass Sie in beiden Konsolen die richtigen Ordner ge{\"o}ffne
  cd ~/psi46test
 \end{lstlisting}
 \begin{lstlisting}[style=console2]
- cd ~/HDItest/Lab-Jack-Code/examples
+ cd ~/HDItest/LabJack-Code/examples
 \end{lstlisting}
 
 \section{Elektronische Tests}
@@ -197,7 +198,7 @@ Stellen Sie sicher, dass Sie in beiden Konsolen die richtigen Ordner ge{\"o}ffne
 Im ersten Test wird die generelle Datensignalausgabe getestet.
 Starten Sie daf{\"u}r das Kontrollprogramm f{\"u}r das Testboard:
 \begin{lstlisting}[style=console1]
- bin/psi64test data/logfile.log
+ bin/psi46test data/logfile.log
  > fsel 2
  > startmod
 \end{lstlisting}
